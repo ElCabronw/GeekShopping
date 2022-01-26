@@ -1,10 +1,7 @@
-﻿using GeekShopping.ProductAPI.Model.Context;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using GeekShopping.ProductAPI.Config;
+using GeekShopping.ProductAPI.Model.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +21,11 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 var scope = app.Services.CreateScope();
 
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+
+
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
 
 // Configure the HTTP request pipeline.
