@@ -31,10 +31,16 @@
     <None Remove="Model\" />
     <None Remove="Model\Base\" />
     <None Remove="Model\Context\" />
+    <None Remove="Repository\" />
+    <None Remove="Data\" />
+    <None Remove="Data\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Model\Base\" />
     <Folder Include="Model\Context\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Data\" />
+    <Folder Include="Data\ValueObjects\" />
   </ItemGroup>
 </Project>
