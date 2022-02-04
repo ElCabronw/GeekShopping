@@ -15,6 +15,7 @@ namespace GeekShopping.ProductAPI.Model
 
 		[Column("description")]
 		[StringLength(500)]
+		
         public string Description { get; set; }
 
 		public ICollection<Product> Products { get; set; }

@@ -6,6 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.2.3" />
@@ -35,6 +38,7 @@
     <None Remove="Data\" />
     <None Remove="Data\ValueObjects\" />
     <None Remove="Config\" />
+    <None Remove="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -44,5 +48,6 @@
     <Folder Include="Data\" />
     <Folder Include="Data\ValueObjects\" />
     <Folder Include="Config\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>
