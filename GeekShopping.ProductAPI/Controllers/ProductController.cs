@@ -57,7 +57,7 @@ namespace GeekShopping.ProductAPI.Controllers
         {
             var isDeleted = await _repository.Delete(id);
             if (!isDeleted) return BadRequest();
-            else return Ok();
+            else return Ok(isDeleted);
         }
 
     }

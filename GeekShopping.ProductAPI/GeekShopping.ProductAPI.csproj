@@ -21,6 +21,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+    <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +41,8 @@
     <None Remove="Data\ValueObjects\" />
     <None Remove="Config\" />
     <None Remove="Controllers\" />
+    <None Remove="Duende.IdentityServer.AspNetIdentity" />
+    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

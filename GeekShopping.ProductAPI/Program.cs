@@ -3,8 +3,6 @@ using GeekShopping.ProductAPI.Config;
 using GeekShopping.ProductAPI.Model.Context;
 using GeekShopping.ProductAPI.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
