@@ -9,6 +9,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.2.3" />
@@ -43,6 +44,7 @@
     <None Remove="Controllers\" />
     <None Remove="Duende.IdentityServer.AspNetIdentity" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <None Remove="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -53,5 +55,6 @@
     <Folder Include="Data\ValueObjects\" />
     <Folder Include="Config\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>
