@@ -5,10 +5,10 @@ namespace GeekShopping.Web.Services.IServices
 {
 	public interface ICategoryService
 	{
-		Task<IEnumerable<CategoryModel>> FindAllCategories();
-		Task<CategoryModel> FindCategoryById(long id);
-		Task<CategoryModel> CreateCategory(CategoryModel model);
-		Task<CategoryModel> UpdateCategory(CategoryModel model);
+		Task<IEnumerable<CategoryViewModel>> FindAllCategories();
+		Task<CategoryViewModel> FindCategoryById(long id);
+		Task<CategoryViewModel> CreateCategory(CategoryViewModel model);
+		Task<CategoryViewModel> UpdateCategory(CategoryViewModel model);
 		Task<bool> DeleteCategoryById(long id);
 	}
 }

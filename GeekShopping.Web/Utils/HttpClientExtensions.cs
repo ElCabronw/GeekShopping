@@ -27,10 +27,18 @@ namespace GeekShopping.Web.Utils
 			string url,
 			T data)
         {
-			var dataAsString = JsonSerializer.Serialize(data);
-			var content = new StringContent(dataAsString);
-			content.Headers.ContentType = contentType;
-			return httpClient.PostAsync(url, content);
+            try
+            {
+				var dataAsString = JsonSerializer.Serialize(data);
+				var content = new StringContent(dataAsString);
+				content.Headers.ContentType = contentType;
+				return httpClient.PostAsync(url, content);
+			}
+            catch (Exception ex)
+            {
+				throw ex;
+            }
+		
 		}
 
 		public static Task<HttpResponseMessage> PutAsJson<T>(this HttpClient httpClient,

@@ -13,6 +13,10 @@ builder.Services.AddHttpClient<ICategoryService, CategoryService>(c =>
  c.BaseAddress = new Uri(builder.Configuration["ServicesUrls:ProductAPI"])
 );
 
+builder.Services.AddHttpClient<ICartService, CartService>(c =>
+ c.BaseAddress = new Uri(builder.Configuration["ServicesUrls:CartAPI"])
+);
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddAuthentication(options =>
 {

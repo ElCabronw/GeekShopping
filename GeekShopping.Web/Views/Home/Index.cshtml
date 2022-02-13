@@ -1,9 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using System.Globalization;
+@model IEnumerable<GeekShopping.Web.Models.ProductViewModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome teste 2</h1>
-    <p>Learn about 3 saspdia <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form>
+    <div class="container row">
+        @foreach (var item in Model)
+            {
+                <div class="col-4">
+                    <div class="p-0 my-3 border">
+                        <div class="card">
+                            <img src="@item.ImageURL" class="card-img-top" />
+                            <div class="card-body">
+                                <h3 class="card-title text-success">@item.SubstringName()</h3>
+                                <span class="badge badge-light mb-2">@item.CategoryName</span>
+                                <p class="card-text">@Html.Raw(item.SubstringDescription())</p>
 
+                                <div class="row">
+                                    <div class="col pt-1">
+                                        <span style="font-size:23px;">@(string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}",item.Price))</span>
+                                    </div>
+                                    <div class="col">
+                                        <a asp-action="Details" asp-route-id="@item.Id"
+                                           class="btn btn-success form-control">Details</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+</form>

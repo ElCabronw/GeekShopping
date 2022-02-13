@@ -15,28 +15,28 @@ namespace GeekShopping.Web.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<CategoryModel>> FindAllCategories()
+        public async Task<IEnumerable<CategoryViewModel>> FindAllCategories()
         {
             var response = await _client.GetAsync(BasePath);
-            return await response.ReadContentAs<List<CategoryModel>>();
+            return await response.ReadContentAs<List<CategoryViewModel>>();
         }
 
-        public async Task<CategoryModel> FindCategoryById(long id)
+        public async Task<CategoryViewModel> FindCategoryById(long id)
         {
             var response = await _client.GetAsync($"{BasePath}/{id}");
-            return await response.ReadContentAs<CategoryModel>();
+            return await response.ReadContentAs<CategoryViewModel>();
         }
-        public async Task<CategoryModel> CreateCategory(CategoryModel model)
+        public async Task<CategoryViewModel> CreateCategory(CategoryViewModel model)
         {
             var response = await _client.PostAsJson(BasePath, model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAs<CategoryModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAs<CategoryViewModel>();
 
             else throw new Exception("Something went wrong when calling API");
         }
-        public async Task<CategoryModel> UpdateCategory(CategoryModel model)
+        public async Task<CategoryViewModel> UpdateCategory(CategoryViewModel model)
         {
             var response = await _client.PutAsJson(BasePath, model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAs<CategoryModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAs<CategoryViewModel>();
 
             else throw new Exception("Something went wrong when calling API");
         }
