@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Text;
 using System.Text.Json;
-using GeekShopping.CartAPI.Messages;
+using GeekShopping.OrderAPI.Messages;
 using GeekShopping.MessageBus;
 using RabbitMQ.Client;
 
-namespace GeekShopping.CartAPI.RabbitMQSender
+
+namespace GeekShopping.OrderAPI.RabbitMQSender
 {
 	public class RabbitMQMessageSender : IRabbitMQMessageSender
 	{
@@ -13,8 +14,10 @@ namespace GeekShopping.CartAPI.RabbitMQSender
         private readonly string _password;
         private readonly string _userName;
         private IConnection _connection;
+
         public RabbitMQMessageSender()
         {
+           
             _hostName = "localhost";
             _password = "guest";
             _userName = "guest";
@@ -42,7 +45,7 @@ namespace GeekShopping.CartAPI.RabbitMQSender
         private byte[] GetMessageAsByteArray(BaseMessage message)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize<CheckoutHeaderVO>((CheckoutHeaderVO)message,options);
+            var json = JsonSerializer.Serialize<PaymentVO>((PaymentVO)message,options);
             var body = Encoding.UTF8.GetBytes(json);
             return body;
         }
