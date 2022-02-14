@@ -15,6 +15,7 @@
     <None Remove="Microsoft.AspNetCore.Authorization" />
     <None Remove="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
     <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -22,6 +23,7 @@
     <Folder Include="Utils\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Product\" />
+    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\" />

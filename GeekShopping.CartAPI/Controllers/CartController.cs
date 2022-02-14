@@ -1,4 +1,6 @@
 ﻿using GeekShopping.CartAPI.Data.ValueObjects;
+using GeekShopping.CartAPI.Messages;
+using GeekShopping.CartAPI.RabbitMQSender;
 using GeekShopping.CartAPI.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +12,12 @@ namespace GeekShopping.CartAPI.Controllers;
 public class CartController : ControllerBase
 {
     private readonly ICartRepository _repository;
-    public CartController(ICartRepository repository)
+    private readonly IRabbitMQMessageSender _rabbitMQMessageSender;
+    public CartController(ICartRepository repository,IRabbitMQMessageSender rabbitMQMessageSender)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _rabbitMQMessageSender = rabbitMQMessageSender ?? throw new ArgumentNullException(nameof(rabbitMQMessageSender));
+
     }
 
     [HttpGet("find-cart/{id}")]
@@ -50,6 +55,39 @@ public class CartController : ControllerBase
         return Ok(status);
     }
 
+    [HttpPost("apply-coupon")]
+    public async Task<ActionResult<CartVO>> ApplyCoupon([FromBody] CartVO vo)
+    {
+        var status = await _repository.ApplyCoupon(vo.CartHeader.UserId, vo.CartHeader.CouponCode);
+        if (!status) return NotFound();
 
+        return Ok(status);
+    }
+
+
+    [HttpDelete("remove-coupon/{userId}")]
+    public async Task<ActionResult<CartVO>> RemoveCoupon(string userId)
+    {
+        var status = await _repository.RemoveCoupon(userId);
+        if (!status) return NotFound();
+
+        return Ok(status);
+    }
+
+    [HttpPost("checkout")]
+    public async Task<ActionResult<CartVO>> Checkout(CheckoutHeaderVO vo)
+    {
+        if (vo?.UserId == null) return BadRequest();
+        var cart = await _repository.FindCartByUserId(vo.UserId);
+        if (cart == null) return NotFound();
+
+        vo.CartDetails = cart.CartDetails;
+        vo.DateTime = DateTime.Now;
+
+
+        _rabbitMQMessageSender.SendMessage(vo, "checkoutqueue");
+
+        return Ok(vo);
+    }
 }
 
