@@ -62,7 +62,8 @@ namespace GeekShopping.PaymentAPI.MessageConsumer
                     OrderId = vo.OrderId,
                     Email = vo.Email
                 };
-                _rabbitMQMessageSender.SendMessage(paymentResult, "orderpaymentresultqueue");
+                //_rabbitMQMessageSender.SendMessage(paymentResult, "orderpaymentresultqueue");
+                _rabbitMQMessageSender.SendMessage(paymentResult);
             }
             catch (Exception ex)
             {

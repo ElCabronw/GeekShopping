@@ -18,9 +18,17 @@ namespace GeekShopping.Web.Services
 
         public async Task<IEnumerable<ProductViewModel>> FindAllProducts(string token)
         {
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = await _client.GetAsync(BasePath);
-            return await response.ReadContentAs<List<ProductViewModel>>();
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = await _client.GetAsync(BasePath);
+                return await response.ReadContentAs<List<ProductViewModel>>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
 
         public async Task<ProductViewModel> FindProductById(long id, string token)
